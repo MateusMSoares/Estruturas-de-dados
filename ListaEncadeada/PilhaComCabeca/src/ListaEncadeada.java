@@ -1,19 +1,19 @@
 public class ListaEncadeada {
-    private Cabeca cabeca;
+    private No cabeca;
 
     public ListaEncadeada() {
-        this.cabeca = new Cabeca();
+       this.cabeca = null;
     }
 
     public void adicionaPrimeiroNo(Musica musica){
         No musicaAdiconado = new No(musica, null);
-        No atual = cabeca.getProximo();
+        No proximo = cabeca.getProximo();
+
         
-        if (atual == null){
+        if (proximo == null){
             cabeca.setProximo(musicaAdiconado);
             return;
         }
-        No proximo = cabeca.getProximo();
         musicaAdiconado.setProximo(proximo);
         cabeca.setProximo(musicaAdiconado);
     }
@@ -110,6 +110,26 @@ public class ListaEncadeada {
         
     }
 
+    public void buscarPorPosicao(int posicaoSelecionada){
+        No atual = cabeca.getProximo();
+        int contadorzinho = 1;
+
+        if (atual == null){
+            System.out.println("AU AU não tem musica, my friend!");
+            return;
+        }
+        while (contadorzinho != posicaoSelecionada) {
+
+            if(atual.getProximo() == null){
+                System.out.println("Acabou tudinho");
+                return;
+            }
+            atual = atual.getProximo();
+            contadorzinho++;
+        }
+        System.out.println("Musica encontrada: " + atual.getMusica().getNome());
+    }
+
     public void imprimirLista() {
         No atual = cabeca.getProximo();
         int contador = 1;
@@ -127,6 +147,7 @@ public class ListaEncadeada {
 
         while(atual != null){
             System.out.println("Posicao: " + contador + ": " + atual.getMusica().toString());
+            contador++;
             if (atual.getProximo() != null) {
                 System.out.println("->*Proximo: " + atual.getProximo().getMusica().toString());
                 // System.out.println(" ");
@@ -134,7 +155,7 @@ public class ListaEncadeada {
                 System.out.println("---------------------------------------------//-------------------------------------------"); 
             }
             atual = atual.getProximo();
-            contador++;
+            
         }
 
     }

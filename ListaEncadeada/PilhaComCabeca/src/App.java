@@ -17,6 +17,8 @@ public class App {
         lista.adicionarAntesNoEspecifico(m7, m1);
         lista.imprimirLista();
 
+        lista.buscarPorPosicao(2);
+
         System.out.println("Adicionando m2 após o nó m5 (último nó)");
         lista.adicionarAposNoEspecifico(m5, m2);
         lista.imprimirLista();
@@ -41,23 +43,23 @@ public class App {
         lista.adicionarUltimoNo(m4);
         lista.imprimirLista();
 
-        // // Adicionada antes do primeiro
-        // lista.adicionarAntesNoEspecifico(m7, m1);
-        // // Adicionada apos ultimo
-        // lista.adicionarAposNoEspecifico(m5, m2);
-        // // Adiciona entre nos
-        // lista.adicionarAntesNoEspecifico(m7, m3);
+        // Adicionada antes do primeiro
+        lista.adicionarAntesNoEspecifico(m7, m1);
+        // Adicionada apos ultimo
+        lista.adicionarAposNoEspecifico(m5, m2);
+        // Adiciona entre nos
+        lista.adicionarAntesNoEspecifico(m7, m3);
 
-        // lista.imprimirLista();
-        // // Deleta primeiro no
-        // lista.deletarNo(m1);
-        // // Deleta ultimo no
-        // lista.deletarNo(m2);
-        // // Deleta entre nos
-        // lista.deletarNo(m6);
-        // //Insere por ultimo
-        // lista.adicionarUltimoNo(m4);
-        // lista.imprimirLista();
+        lista.imprimirLista();
+        // Deleta primeiro no
+        lista.deletarNo(m1);
+        // Deleta ultimo no
+        lista.deletarNo(m2);
+        // Deleta entre nos
+        lista.deletarNo(m6);
+        //Insere por ultimo
+        lista.adicionarUltimoNo(m4);
+        lista.imprimirLista();
 
     }
 }
