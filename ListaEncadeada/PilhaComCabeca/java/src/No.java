@@ -35,5 +35,4 @@ public class No {
                 ", proximo=" + proximo +
                 '}';
     }
-
 }
