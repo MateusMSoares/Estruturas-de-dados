@@ -6,8 +6,6 @@ struct Operacao{
     Operacao* proximo;
 };
 
-
-
 class Fila{
     private:
         Operacao* cabeca = nullptr;
