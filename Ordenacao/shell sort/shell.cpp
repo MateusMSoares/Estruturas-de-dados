@@ -33,6 +33,7 @@ int* shell_sort(int lista[], int t){
 int main(){
     int t = 5;
     int lista[t] = {3, 5, 1, 8, 6};
+    // int lista[t] = {3, 5, 7, 8, 6, 10, 9, 2, 4, 1};
     int* listaOrdenada = shell_sort(lista, t);
     print(listaOrdenada, t);
 
