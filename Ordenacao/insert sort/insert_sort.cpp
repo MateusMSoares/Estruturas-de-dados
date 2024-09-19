@@ -5,10 +5,10 @@ using namespace std;
 int* insert_sort(int lista[], int t){
    for (int i = 0; i < t - 1; i++){
         int j = i+1;
-        while (j > 0 && lista[j] < lista[j-1]) {
-			int aux = lista[j];
-			lista[j] = lista[j-1];
-			lista[j-1] = aux;
+        while (j > 0 && lista[j-1] > lista[j])  {
+			int aux = lista[j - 1];
+			lista[j - 1] = lista[j];
+			lista[j] = aux;
 			j -= 1;
 		}
    }
