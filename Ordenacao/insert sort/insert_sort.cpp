@@ -3,18 +3,17 @@ using namespace std;
 
 
 int* insert_sort(int lista[], int t){
-   for (int i = 0; i < t - 1; i++){
-        int j = i+1;
-        while (j > 0 && lista[j-1] > lista[j])  {
-			int aux = lista[j - 1];
-			lista[j - 1] = lista[j];
-			lista[j] = aux;
-			j -= 1;
-		}
-   }
+    for (int i = 1; i < t; i++){
+        int temp = lista[i];
+        int j = i  - 1;
+        while (j >= 0 && lista[j] > temp){
+            lista[j + 1] = lista[j];
+            j--;
+        }
+        lista[j+1] = temp;
+    }     
     return lista;
-}
-
+};
 
 void print(int lista[], int n) {
     cout << "Array: ";
@@ -28,10 +27,10 @@ void print(int lista[], int n) {
 }
 
 int main(){
-    int lista[10] = {6, 5, 9, 8, 1, 7, 10, 3, 4, 2};
-    int n = 10;
-
+    int n = 5;
+    int lista[n] = {6, 5, 9, 8, 1};
     int* listaSortida = insert_sort(lista, n);
+    cout << "teste";
     print(listaSortida, n);
 
     return 0;
