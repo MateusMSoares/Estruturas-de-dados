@@ -28,7 +28,7 @@ void print(int lista[], int n) {
 
 int main(){
     int n = 5;
-    int lista[n] = {6, 5, 9, 8, 1};
+    int lista[5] = {6, 5, 9, 8, 1};
     int* listaSortida = insert_sort(lista, n);
     cout << "teste";
     print(listaSortida, n);
