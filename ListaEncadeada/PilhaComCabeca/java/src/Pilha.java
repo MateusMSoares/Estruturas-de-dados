@@ -1,35 +1,35 @@
 public class Pilha {
-    private No cabeca;
+    private No topo;
 
     public void inserir(Musica musica){
         No noInserido = new No(musica, null);
         
-        if (cabeca == null) {
-            cabeca = noInserido;
+        if (topo == null) {
+            topo = noInserido;
             return;
         }
 
-       No proximo = cabeca;
-       cabeca = noInserido;
-       cabeca.setProximo(proximo);
+       No proximo = topo;
+       topo = noInserido;
+       topo.setProximo(proximo);
 
     }
 
     public Musica retirar(){
-        if (cabeca == null) {
+        if (topo == null) {
             System.out.println("VAZIO");
             return null;
         }
 
-        No noRetirado = cabeca;
-        No proximo = cabeca.getProximo();
-        cabeca = proximo;
+        No noRetirado = topo;
+        No proximo = topo.getProximo();
+        topo = proximo;
 
         return noRetirado.getMusica();
     }
 
     public void imprimirLista() {
-        No atual = cabeca;
+        No atual = topo;
         int contador = 1;
 
         if (atual == null){
