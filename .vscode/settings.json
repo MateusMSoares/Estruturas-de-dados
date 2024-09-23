@@ -60,6 +60,7 @@
   "files.associations": {
     "iostream": "cpp",
     "new": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "ostream": "cpp"
   }
 }
