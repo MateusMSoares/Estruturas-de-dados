@@ -61,6 +61,8 @@
     "iostream": "cpp",
     "new": "cpp",
     "algorithm": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "cstdlib": "cpp",
+    "chrono": "cpp"
   }
 }

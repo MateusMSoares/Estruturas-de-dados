@@ -31,7 +31,7 @@ void enfileirar(Pessoa*& inicio, Pessoa*& fim, string nome){
     fim = novaPessoa;     
 }
 
-Pessoa* desenfileirar(Pessoa*& inicio, Pessoa*& fim){
+Pessoa* desenfileirar(Pessoa* inicio, Pessoa*& fim){
     Pessoa* pessoaRetirada;
     if (inicio == fim){
         pessoaRetirada = inicio;
@@ -56,21 +56,9 @@ int main() {
     imprimirLista(inicio);
 
     Pessoa* pessoaRetirada = desenfileirar(inicio, fim);
-    Pessoa* pessoaRetirada1 = desenfileirar(inicio, fim);
-    Pessoa* pessoaRetirada2 = desenfileirar(inicio, fim);
-    Pessoa* pessoaRetirada3 = desenfileirar(inicio, fim);
-    Pessoa* pessoaRetirada4 = desenfileirar(inicio, fim);
     
     cout << "pessoa Saiu: " << pessoaRetirada->nome << endl;
     delete(pessoaRetirada);
-    cout << "pessoa Saiu: " << pessoaRetirada1->nome << endl;
-    cout << "pessoa Saiu: " << pessoaRetirada2->nome << endl;
-    cout << "pessoa Saiu: " << pessoaRetirada3->nome << endl;
-    cout << "pessoa Saiu: " << pessoaRetirada4->nome << endl;
-    delete(pessoaRetirada1);
-    delete(pessoaRetirada2);
-    delete(pessoaRetirada3);
-    delete(pessoaRetirada4);
     
     cout << "Fila aps desenfileirar: ";
     imprimirLista(inicio);
