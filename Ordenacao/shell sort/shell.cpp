@@ -42,7 +42,6 @@ vector<int> gerarSequenciaSedgewick(int t){
         break;
        }
        k++;
-       
     }
     
     reverseSequencia(gaps);
@@ -85,6 +84,7 @@ void print(vector<int>& lista){
 
 vector<int> criarLista(int tamanho){
     vector<int> vec;
+    vec.reserve(tamanho);
     for (int i = tamanho; i > 0; i--){
         vec.push_back(i);
     }
@@ -92,43 +92,47 @@ vector<int> criarLista(int tamanho){
 }
 
 int main(){
-    vector<int> lista1 = criarLista(100000);
-    vector<int> lista2 = criarLista(100000);
-    vector<int> lista3 = criarLista(100000);
-
-    vector<int> hibbard = gerarSequenciaHibbard(lista1.size());
-    vector<int> sedgewick = gerarSequenciaSedgewick(lista2.size());
-    vector<int> knuth = gerarSequenciaKnuth(lista3.size());
-
-    cout << "Hibbard sequence: " << endl;
-    print(hibbard);
-    cout << endl;
+    
+    vector<int> lista1 = criarLista(1000000);
+    vector<int> sedgewick = gerarSequenciaSedgewick(lista1.size());
     cout << "sedgewick sequence: " << endl;
     print(sedgewick);
     cout << endl;
-    cout << "knut sequence: " << endl;
-    print(knuth);
-    cout << endl;
-       
+    
+    // vector<int> lista2 = criarLista(100000000);
+    // vector<int> hibbard = gerarSequenciaHibbard(lista2.size());
+    // cout << "Hibbard sequence: " << endl;
+    // print(hibbard);
+    // cout << endl;
+
+    // vector<int> lista3 = criarLista(100000000);
+    // vector<int> knuth = gerarSequenciaKnuth(lista3.size());
+    // cout << "knut sequence: " << endl;
+    // print(knuth);
+    // cout << endl;
+    
+
+    auto start = high_resolution_clock::now();
+    shell_sort(lista1, sedgewick);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<seconds>(stop - start);
+    cout << "Tempo de execucao para lista (Sedgewick): " << duration.count() << " seconds" << endl;
 
 
+    // auto start2 = high_resolution_clock::now();
+    // shell_sort(lista3, knuth);
+    // auto stop2 = high_resolution_clock::now();
+    // auto duration2 = duration_cast<seconds>(stop2 - start2);
+    // cout << "Tempo de execucao para lista (knut): " << duration2.count() << " seconds" << endl;
+    
     // auto start1 = high_resolution_clock::now();
     // shell_sort(lista2, hibbard);
     // auto stop1 = high_resolution_clock::now();
-    // auto duration1 = duration_cast<microseconds>(stop1 - start1);
-    // cout << "Tempo de execucao para lista (Hibbard): " << duration1.count() << " microseconds" << endl;
+    // auto duration1 = duration_cast<seconds>(stop1 - start1);
+    // cout << "Tempo de execucao para lista (Hibbard): " << duration1.count() << " seconds" << endl;
 
-    auto start2 = high_resolution_clock::now();
-    shell_sort(lista3, knuth);
-    auto stop2 = high_resolution_clock::now();
-    auto duration2 = duration_cast<microseconds>(stop2 - start2);
-    cout << "Tempo de execucao para lista (knut): " << duration2.count() << " microseconds" << endl;
 
-    // auto start = high_resolution_clock::now();
-    // shell_sort(lista1, sedgewick);
-    // auto stop = high_resolution_clock::now();
-    // auto duration = duration_cast<microseconds>(stop - start);
-    // cout << "Tempo de execucao para lista (Sedgewick): " << duration.count() << " microseconds" << endl;
+
 
     return 0;
 }

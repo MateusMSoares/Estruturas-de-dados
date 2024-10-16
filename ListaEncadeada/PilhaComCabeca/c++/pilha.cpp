@@ -6,12 +6,12 @@ struct Operacao{
     Operacao* proximo;
 };
 
-class Fila{
+class Pila{
     private:
         Operacao* cabeca = nullptr;
 
     public:
-        Fila(){
+        Pila(){
             cabeca = new Operacao;
             cabeca->proximo = nullptr;
         }
@@ -60,16 +60,16 @@ class Fila{
 };
 
 int main(){
-    Fila fila;
-    fila.empilhar(1);
-    fila.empilhar(2);
-    fila.empilhar(3);
-    fila.empilhar(4);
-    fila.empilhar(5);
-    fila.print();
-    int deletado = fila.desimpilhar();
+    Pila pilha;
+    pilha.empilhar(1);
+    pilha.empilhar(2);
+    pilha.empilhar(3);
+    pilha.empilhar(4);
+    pilha.empilhar(5);
+    pilha.print();
+    int deletado = pilha.desimpilhar();
     cout << "Deletado: " << deletado << endl;
-    fila.print();
+    pilha.print();
 
     return 0;
 }

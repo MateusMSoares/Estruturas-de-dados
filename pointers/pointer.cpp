@@ -17,7 +17,12 @@ void somaStack(Pointer* p) {
     p->valor = p->valor + 7;  // Isso afeta o objeto original
 }
 
+void somarponteiroponteiro(Pointer** p){
+    (*p)->valor = (*p)->valor + 10;
+}
+
 int main() {
+    
     Pointer p;
     Pointer p3;
     Pointer* p1 = new Pointer();
@@ -26,6 +31,7 @@ int main() {
     p3.valor = 3;   // Inicializa 'p3' com 3
     p1 = &p;        // Faz 'p1' apontar para 'p'  
 
+    somarponteiroponteiro(&p1);
     naoSomaGlobal(p);  // Chamada por valor (não modifica 'p')
     naoSomaGlobal(*p1); // Chamada por valor (não modifica 'p')
 

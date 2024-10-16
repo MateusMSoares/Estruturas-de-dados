@@ -21,19 +21,20 @@ int binary_search(int lista[], int inicio, int fim, int alvo){
     }
 
     if (lista[metade] < alvo){
-        return binary_search(lista, metade, fim, alvo);
+        return binary_search(lista, metade -1, fim, alvo);
     }
 
     if (lista[metade] == alvo){
         return lista[metade];
-    }
-    
+    }else{
+        return - 1;
+    }    
 }
 
 
 int main() {
     int lista[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int alvo = 4;
+    int alvo = 7;
     int inicio = 0;
     int fim = 9;
     int encontrado = binary_search(lista, inicio, fim, alvo);
