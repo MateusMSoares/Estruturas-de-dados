@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <random>
+#include <chrono>
 using namespace std;
+using namespace std::chrono;
 
 void print(vector<int>& vetor, string texto){
     cout << texto << ": ";
@@ -43,10 +46,7 @@ void merge(vector<int>& listaOriginal, int inicio, int meio, int fim) {
 
     for (size_t l = 0; l < temp.size(); l++){
         listaOriginal[inicio + l] = temp[l];
-    }
-    
-    print(listaOriginal, "Lista original: ");
-   
+    }   
 }
 
 void mergeSort(vector<int>& lista, int inicio, int fim){
@@ -59,7 +59,18 @@ void mergeSort(vector<int>& lista, int inicio, int fim){
 }
 
 
-vector<int> criarLista(int tamanho){
+vector<int> criaListaAleatoria(int tamanho){
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distr(1, tamanho);
+    vector<int> lista(tamanho);
+    for (int i = 0; i < tamanho; ++i) {
+        lista[i] = distr(gen);
+    }
+    return lista;
+}
+
+vector<int> criaLista(int tamanho){
     vector<int> vec;
     vec.reserve(tamanho);
     for (int i = tamanho; i > 0; i--){
@@ -68,16 +79,23 @@ vector<int> criarLista(int tamanho){
     return vec;
 }
 
-
 int main(){
-    cout << "teste" << endl;
-    vector<int> v = criarLista(1000);
-    cout << v.size() << endl;
+    vector<int> v = criaLista(1000000);
+    vector<int> vr = criaListaAleatoria(1000000);
+    
+    // Medir o tempo de execução
+    auto start = high_resolution_clock::now();
     mergeSort(v, 0, v.size() - 1);
+    auto end = high_resolution_clock::now();
+    chrono::duration<double> tempo = end - start; 
+    cout << "Tempo de execucao invertido: " << tempo.count() << " segundos" << endl;
 
-    for (int num : v) {
-        cout << num << " ";
-    }
-    cout << endl;
+    auto start1 = high_resolution_clock::now();
+    mergeSort(vr, 0, vr.size() - 1);
+    auto end1 = high_resolution_clock::now();
+    chrono::duration<double> tempo1 = end1 - start1; 
+
+    cout << "Tempo de execucao aleatorio: " << tempo1.count() << " segundos" << endl;
+
     return 0;
 }
