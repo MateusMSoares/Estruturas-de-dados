@@ -82,6 +82,8 @@ vector<int> criaLista(int tamanho){
 int main(){
     vector<int> v = criaLista(1000000);
     vector<int> vr = criaListaAleatoria(1000000);
+
+    cout << "Merge:" << endl;
     
     // Medir o tempo de execução
     auto start = high_resolution_clock::now();

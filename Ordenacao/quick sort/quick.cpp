@@ -12,27 +12,35 @@ void print(vector<int> &lista){
     
 }
 
-void quickSort(vector<int> &lista, int inicio, int fim){
-    if (inicio < fim){
-        int pivo = lista[inicio + (fim - inicio) / 2];
-        int i = inicio;
-        int j = fim;
+int quickSort(vector<int> &lista, int inicio, int fim, int pivo){
+    int i = inicio;
+    int j = fim;
+    while(i <= j){
+        while (lista[i] < pivo){
+            i++;
+        }
+        while (lista[j] > pivo){
+            j--;
+        }
+        if (i <= j){
+            swap(lista[i], lista[j]);
+            i++;
+            j--;
+        }     
+    }
+    return i;
+}
 
-        while (i <= j){
-            while (lista[i] < pivo){
-                i++;
-            }
-            while (lista[j] > pivo){
-                j--;
-            }
-            if (i <= j) {
-                swap(lista[i], lista[j]);         
-                i++;
-                j--;
-            }
-        }      
-        quickSort(lista, inicio, j);
-        quickSort(lista, i, fim);
+void divide(vector<int> &lista, int inicio, int fim){
+    if(inicio < fim){
+
+        int meio = inicio + (fim - inicio) / 2;
+        int pivo = lista[meio];
+
+        //Metade ordenada em relacao ao pivo.
+        int metadeOrdenada = quickSort(lista, inicio, fim, pivo);
+        divide(lista, inicio, metadeOrdenada-1);
+        divide(lista, metadeOrdenada, fim);
     }
 }
 
@@ -57,24 +65,28 @@ vector<int> criaLista(int tamanho){
 }
 
 int main(){
-   vector<int> v = criaLista(1000000);
-   vector<int> vr = criaListaAleatoria(1000000);
+   vector<int> v = {2, 4, 6, 1, 8, 1, 3};
+   //vector<int> vr = criaListaAleatoria(1000000);
 
-    // Medir o tempo de execução
-    auto start = high_resolution_clock::now();
-    quickSort(v, 0, v.size() - 1);
-    auto end = high_resolution_clock::now();
-    chrono::duration<double> tempo = end - start; 
-    cout << "Tempo de execucao invertido: " << tempo.count() << " segundos" << endl;
+    divide(v, 0, v.size() - 1);
+    print(v);
 
-    auto start1 = high_resolution_clock::now();
-    quickSort(vr, 0, vr.size() - 1);
-    auto end1 = high_resolution_clock::now();
-    chrono::duration<double> tempo1 = end1 - start1; 
+    cout << "Quick:" << endl;
 
-    cout << "Tempo de execucao aleatorio: " << tempo1.count() << " segundos" << endl;
+    // auto start = high_resolution_clock::now();
+    // divide(v, 0, v.size() - 1);
+    // auto end = high_resolution_clock::now();
+    // chrono::duration<double> tempo = end - start; 
+    // cout << "Tempo de execucao invertido: " << tempo.count() << " segundos" << endl;
 
-    // print(v);
+    // auto start1 = high_resolution_clock::now();
+    // divide(vr, 0, vr.size() - 1);
+    // auto end1 = high_resolution_clock::now();
+    // chrono::duration<double> tempo1 = end1 - start1; 
+    // cout << "Tempo de execucao aleatorio: " << tempo1.count() << " segundos" << endl;
+
+    // cout << endl;
+    // print(vr);
 
     
     return 0;

@@ -112,7 +112,9 @@ int main(){
     cout << "sedgewick sequence: " << endl;
     print(sedgewick);
     cout << endl;
- 
+    
+    cout << "Shell:" << endl;
+
     auto start1 = high_resolution_clock::now();
     shell_sort(aleatoria, sedgewick);
     auto end1 = high_resolution_clock::now();
