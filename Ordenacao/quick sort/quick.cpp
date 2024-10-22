@@ -12,7 +12,9 @@ void print(vector<int> &lista){
     
 }
 
-int quickSort(vector<int> &lista, int inicio, int fim, int pivo){
+int quickSort(vector<int> &lista, int inicio, int fim){
+    int meio = inicio + (fim - inicio) / 2;
+    int pivo = lista[meio];
     int i = inicio;
     int j = fim;
     while(i <= j){
@@ -33,12 +35,8 @@ int quickSort(vector<int> &lista, int inicio, int fim, int pivo){
 
 void divide(vector<int> &lista, int inicio, int fim){
     if(inicio < fim){
-
-        int meio = inicio + (fim - inicio) / 2;
-        int pivo = lista[meio];
-
-        //Metade ordenada em relacao ao pivo.
-        int metadeOrdenada = quickSort(lista, inicio, fim, pivo);
+        //Metade ordenada em relacao ao pivo
+        int metadeOrdenada = quickSort(lista, inicio, fim);
         divide(lista, inicio, metadeOrdenada-1);
         divide(lista, metadeOrdenada, fim);
     }
