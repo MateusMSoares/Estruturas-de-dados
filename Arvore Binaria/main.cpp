@@ -43,15 +43,6 @@ void printMaiorMenor(Node* raiz){
     printMaiorMenor(raiz->esquerda);
 }
 
-void ordemDeEntrada(Node* raiz){
-    if (!raiz){
-        return;
-    } 
-    cout << raiz->valor << " ";
-    ordemDeEntrada(raiz->direita);  
-    ordemDeEntrada(raiz->esquerda);    
-}
-
 Node* buscaPorValor(Node* raiz, int valor){
     if (!raiz){
         return nullptr;
@@ -77,11 +68,10 @@ int main(){
     inserir(raiz, 50);
     inserir(raiz, 15);
     inserir(raiz, 10);
+    inserir(raiz, 18);
     print(raiz);
     cout << endl;
     printMaiorMenor(raiz);
-    cout << endl;
-    ordemDeEntrada(raiz);
     cout << endl;
     Node* encontrado = buscaPorValor(raiz, 70);
     if (encontrado == nullptr) {
