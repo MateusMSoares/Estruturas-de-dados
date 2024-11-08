@@ -4,6 +4,8 @@
         "ostream": "cpp",
         "deque": "cpp",
         "format": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "utility": "cpp",
+        "type_traits": "cpp"
     }
 }
