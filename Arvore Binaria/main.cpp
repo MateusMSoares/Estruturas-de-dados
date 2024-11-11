@@ -1,5 +1,7 @@
 #include <iostream>
-#include <deque>
+#include <iomanip>
+#include <queue>
+#include <cmath>
 using namespace std;
 
 struct Node{
@@ -63,8 +65,14 @@ void percorreHorizontal(deque<pair<int, Node*>> fila){
     if (fila.size() == 0){
         return;   
     }
+    
     int profundidade = fila.front().first;
     Node* no = fila.front().second;
+    
+    if (!no){
+        cout << "Vazio";
+    }
+
     fila.pop_front();
     cout << "[" << profundidade << ":" << no->valor << "],";
     if (no->esquerda) fila.push_back(make_pair(profundidade+1, no->esquerda));
@@ -80,65 +88,41 @@ Node* retirar(Node*& raiz){
     }
     
     Node* raizAntiga = raiz;
-    Node* refEsquerda = raiz->esquerda;
-    Node* paiMenor = nullptr;
-    Node* menor = nullptr;
 
-    Node* refDireita = raiz->direita;  
-    Node* paiMaior = nullptr;  
-    Node* maior = nullptr;
-
-    if (!refEsquerda && !refDireita){
+    if (!raiz->esquerda && !raiz->direita){
         raiz = nullptr;
         return raizAntiga;
     }
 
-    if (!refEsquerda){
-        raiz = refDireita;
+    if (!raiz->esquerda){
+        raiz = raiz->direita;
         return raizAntiga;
     }
 
-    else if(!refDireita){
-        raiz = refEsquerda;
+    if(!raiz->direita){
+        raiz = raiz->esquerda;
         return raizAntiga;
     }
     
-    while (refEsquerda){
-        paiMenor = refEsquerda;
-        refEsquerda = refEsquerda->direita;
+    Node* paiMaior = nullptr;
+    Node* maior = raiz->direita;
+    while(maior->esquerda){
+        paiMaior = maior;
+        maior = maior->esquerda;
     }
-    menor = refEsquerda;
     
-    while(refDireita){
-        paiMaior = refDireita;
-        refDireita = refDireita->esquerda;
-    }
-    maior = refDireita;
-
-    int diferencaMenor = raiz->valor - menor->valor;
-    int diferencaMaior = maior->valor - raiz->valor;
-
-    if (diferencaMenor < diferencaMaior){
-        paiMenor->direita = nullptr;
-        raiz = menor;
-        return raizAntiga; 
+    if(paiMaior){
+        paiMaior->esquerda = maior->direita;
+        maior->esquerda = raiz->esquerda;
+        maior->direita = raiz->direita;
     }else{
-        paiMaior->esquerda = nullptr;
-        raiz = maior;
-        return raizAntiga;
+        maior->esquerda = raiz->esquerda;
     }
-
-    if (menor){
-        paiMenor->direita = nullptr;
-        raiz = menor; 
-        return raizAntiga;
-    }else{
-        paiMaior->esquerda = nullptr;
-        raiz = maior; 
-        return raizAntiga;
-    }
+    
+    raiz = maior;
+    
+    return raizAntiga;
 }
-
 
 
 void inverte(Node* raiz){
@@ -152,6 +136,7 @@ void inverte(Node* raiz){
     inverte(raiz->direita);
     
 }
+
 
 int main(){
     Node* raiz = nullptr;
@@ -169,6 +154,7 @@ int main(){
     inserir(raiz, new Node(55));
     inserir(raiz, new Node(11));
     inserir(raiz, new Node(35));
+    inserir(raiz, new Node(40));
     inserir(raiz, new Node(1));
     printMenorMaior(raiz);
     cout << endl;
@@ -193,14 +179,13 @@ int main(){
     percorreHorizontal(fila);
     cout << endl;
     Node* raiz2 = nullptr;
+    inserir(raiz2, new Node(50));
+    inserir(raiz2, new Node(30));
+    inserir(raiz2, new Node(70));
     inserir(raiz2, new Node(20));
-    inserir(raiz2, new Node(15));
-    inserir(raiz2, new Node(13));
-    inserir(raiz2, new Node(18));
-    inserir(raiz2, new Node(7));
-    inserir(raiz2, new Node(9));
-    inserir(raiz2, new Node(22));
-    inserir(raiz2, new Node(25));
+    inserir(raiz2, new Node(40));
+    inserir(raiz2, new Node(60));
+    inserir(raiz2, new Node(90));
     
     fila.clear();
     fila.push_back(make_pair(0, raiz2));
@@ -210,6 +195,7 @@ int main(){
     Node* retirado = retirar(raiz2);
     cout << "retirado: " << retirado->valor;
     cout << endl; 
+    
     fila.clear();
     fila.push_back(make_pair(0, raiz2));
     percorreHorizontal(fila);
