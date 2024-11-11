@@ -195,6 +195,7 @@ int main(){
     Node* retirado = retirar(raiz2);
     cout << "retirado: " << retirado->valor;
     cout << endl; 
+    delete retirado;
     
     fila.clear();
     fila.push_back(make_pair(0, raiz2));
