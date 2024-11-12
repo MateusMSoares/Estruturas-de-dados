@@ -156,6 +156,16 @@ int main(){
     inserir(raiz, new Node(35));
     inserir(raiz, new Node(40));
     inserir(raiz, new Node(1));
+
+    Node* raiz2 = nullptr;
+    inserir(raiz2, new Node(50));
+    inserir(raiz2, new Node(30));
+    inserir(raiz2, new Node(70));
+    inserir(raiz2, new Node(20));
+    inserir(raiz2, new Node(40));
+    inserir(raiz2, new Node(60));
+    inserir(raiz2, new Node(90));
+    
     printMenorMaior(raiz);
     cout << endl;
     printMaiorMenor(raiz);
@@ -168,37 +178,29 @@ int main(){
     cout << "Encontrado: " << encontrado->valor << endl;
 
     deque<pair<int, Node*>> fila;
-    fila.push_back(make_pair(0, raiz));
+    fila.push_back(make_pair(0, raiz2));
     cout << "Original das ruas:" << endl;
     percorreHorizontal(fila);
     cout << endl;   
-    inverte(raiz);
+    inverte(raiz2);
     fila.clear();
     fila.push_back(make_pair(0, raiz));
     cout << "Invertido:" << endl;
     percorreHorizontal(fila);
     cout << endl;
-    Node* raiz2 = nullptr;
-    inserir(raiz2, new Node(50));
-    inserir(raiz2, new Node(30));
-    inserir(raiz2, new Node(70));
-    inserir(raiz2, new Node(20));
-    inserir(raiz2, new Node(40));
-    inserir(raiz2, new Node(60));
-    inserir(raiz2, new Node(90));
     
     fila.clear();
-    fila.push_back(make_pair(0, raiz2));
+    fila.push_back(make_pair(0, raiz));
     cout << endl;
     percorreHorizontal(fila);
     cout << endl;   
-    Node* retirado = retirar(raiz2);
+    Node* retirado = retirar(raiz);
     cout << "retirado: " << retirado->valor;
     cout << endl; 
     delete retirado;
     
     fila.clear();
-    fila.push_back(make_pair(0, raiz2));
+    fila.push_back(make_pair(0, raiz));
     percorreHorizontal(fila);
     return 0;
 }
